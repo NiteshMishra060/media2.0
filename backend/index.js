@@ -7,6 +7,7 @@ import cookieParser from "cookie-parser";
 import userRoute from "./routes/userRoute.js";
 import cors from "cors";
 import multer from "multer";
+import {Video} from "./models/files.js"
 
 databaseConnection();
 
@@ -51,19 +52,23 @@ const upload = multer({ storage: storage });
 
 // Routes
 app.post(
-    '/api/user/upload',
+    "/api/user/upload",
     upload.single('file'),
     async (req, res) => {
         try {
-            const { video_name, video_type, host_name, contactNo } = req.query;
+            console.log(req.query);
+            const { videoName, videoType, hostName, contactNo } = req.query;
+            console.log( req.query);
             const videoUrl = `${req.protocol}://${req.get('host')}/videos/${req.file.filename}`;
+            console.log(videoUrl)
             const newVideo = new Video({
-                videoName: video_name,
-                videoType: video_type,
-                hostName: host_name,
+                videoName: videoName,
+                videoType: videoType,
+                hostName: hostName,
                 contactNo: contactNo,
                 videoUrl: videoUrl,
             });
+            console.log(newVideo)
             await newVideo.save();
             res.status(201).json({ message: 'Video uploaded successfully', video: newVideo });
         } catch (error) {
