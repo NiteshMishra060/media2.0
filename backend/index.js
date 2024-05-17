@@ -33,9 +33,6 @@ const middleware = async (req, res, next) => {
 // api
 app.use("/api/user", middleware, userRoute);
 
-
-
-
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
         cb(null, './videos');

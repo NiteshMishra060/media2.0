@@ -26,6 +26,19 @@ const Header = () => {
             console.log(error);
         }
     }
+    
+    // const uploadHandler = async () => {
+    //     try {
+    //         const res = await axios.post(`${API_END_POINT}/upload`);
+    //         // if(res.data.success){
+    //         //     toast.success(res.data.message);
+    //         // }
+    //         // dispatch(setUser(null));
+    //         // navigate("/");
+    //     } catch (error) {
+    //         console.log(error);
+    //     }
+    // }
 
     const toggleHandler = () => {
         dispatch(setToggle());
@@ -42,6 +55,10 @@ const Header = () => {
                         <div className='ml-4'>
                             <button onClick={logoutHandler} className='bg-red-800 text-white px-4 py-2'>Logout</button>
                             <button onClick={toggleHandler} className='bg-red-800 text-white px-4 py-2 ml-2'>{toggle ? "Home" : "Search Movie"}</button>
+                            {/* <form>
+                            <button onClick={uploadHandler} className='bg-red-800 text-white px-4 py-2 ml-2'>upload</button>
+                            </form> */}
+                            <upload/>
                         </div>
                     </div>
                 )
